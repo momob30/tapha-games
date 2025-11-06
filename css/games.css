@@ -41,7 +41,7 @@
 .versus {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--accent-color);
+    color: rgb(12, 136, 237);
 }
 
 .game-info {
@@ -108,7 +108,7 @@
 }
 
 .reset-btn:hover {
-    background-color: #c0392b;
+    background-color: #2d7ce3;
 }
 
 /* Animation de secousse */
