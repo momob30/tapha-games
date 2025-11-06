@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapha Games - Nos Jeux</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-gamepad"></i>
+            <span>Tapha Games</span>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="games.html" class="active"><i class="fas fa-dice"></i> Jeux</a></li>
+            <li><a href="scores.html"><i class="fas fa-trophy"></i> Scores</a></li>
+        </ul>
+    </nav>
+
+    <main class="games-content">
+        <h1>Nos Jeux</h1>
+        
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-image">
+                    <div class="game-icons">
+                        <i class="fas fa-hand-rock"></i>
+                        <i class="fas fa-hand-paper"></i>
+                        <i class="fas fa-hand-scissors"></i>
+                    </div>
+                </div>
+                <div class="game-info">
+                    <h3><i class="fas fa-hand-rock"></i> Pierre Papier Ciseaux</h3>
+                    <p>Le classique jeu de Pierre Papier Ciseaux contre l'ordinateur !</p>
+                    <a href="games/pierre-papier-ciseaux.html" class="play-button">Jouer</a>
+                </div>
+            </div>
+            
+            <div class="game-card coming-soon">
+                <div class="game-image">
+                    <div class="game-icons puzzle-icons">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <i class="fas fa-puzzle-piece"></i>
+                        <i class="fas fa-puzzle-piece"></i>
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                </div>
+                <div class="game-info">
+                    <h3><i class="fas fa-puzzle-piece"></i> Puzzle</h3>
+                    <p>Bientôt disponible !</p>
+                    <button class="play-button" disabled>Prochainement</button>
+                </div>
+            </div>
+            
+            <div class="game-card coming-soon">
+                <div class="game-image">
+                    <div class="game-icons chess-icons">
+                        <i class="fas fa-chess-king"></i>
+                        <i class="fas fa-chess-queen"></i>
+                        <i class="fas fa-chess-knight"></i>
+                        <i class="fas fa-chess-rook"></i>
+                    </div>
+                </div>
+                <div class="game-info">
+                    <h3><i class="fas fa-chess"></i> Échecs</h3>
+                    <p>Bientôt disponible !</p>
+                    <button class="play-button" disabled>Prochainement</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À propos</h3>
+                <p>Tapha Games est votre destination pour des jeux en ligne gratuits et amusants.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation rapide</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="games.html">Jeux</a></li>
+                    <li><a href="scores.html">Scores</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tapha Games. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

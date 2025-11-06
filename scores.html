@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapha Games - Scores</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scores.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-gamepad"></i>
+            <span>Tapha Games</span>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="games.html"><i class="fas fa-dice"></i> Jeux</a></li>
+            <li><a href="scores.html" class="active"><i class="fas fa-trophy"></i> Scores</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Tableau des Scores</h1>
+        
+        <div class="scores-container">
+            <div class="scores-header">
+                <div class="title-section">
+                    <h2><i class="fas fa-trophy"></i> Tableau des Scores</h2>
+                    <p class="subtitle">Suivez vos performances dans tous les jeux</p>
+                </div>
+                <div class="actions-section">
+                    <button id="reset-scores" class="reset-scores-btn" title="Réinitialiser tous les scores">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Réinitialiser les scores</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="games-scores-container">
+                <div class="game-scores">
+                    <div class="game-scores-header">
+                        <i class="fas fa-hand-rock"></i>
+                        <h2>Pierre Papier Ciseaux</h2>
+                    </div>
+                    <div id="ppc-scores" class="scores-content">
+                        <div class="loading-scores">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Chargement des scores...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de confirmation amélioré -->
+        <div id="confirm-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fas fa-exclamation-circle warning-icon"></i>
+                    <h3>Réinitialiser les scores</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="warning-text">Attention ! Vous êtes sur le point de réinitialiser tous vos scores.</p>
+                    <p class="detail-text">Cette action :</p>
+                    <ul class="warning-list">
+                        <li><i class="fas fa-times-circle"></i> Effacera tous vos scores</li>
+                        <li><i class="fas fa-times-circle"></i> Ne peut pas être annulée</li>
+                        <li><i class="fas fa-times-circle"></i> Réinitialisera toutes vos statistiques</li>
+                    </ul>
+                </div>
+                <div class="modal-buttons">
+                    <button id="cancel-reset" class="cancel-btn">
+                        <i class="fas fa-times"></i>
+                        Annuler
+                    </button>
+                    <button id="confirm-reset" class="confirm-btn">
+                        <i class="fas fa-check"></i>
+                        Confirmer la réinitialisation
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification améliorée -->
+        <div id="notification-container"></div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À propos</h3>
+                <p>Tapha Games est votre destination pour des jeux en ligne gratuits et amusants.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation rapide</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="games.html">Jeux</a></li>
+                    <li><a href="scores.html">Scores</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tapha Games. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('confirm-modal');
+            const resetBtn = document.getElementById('reset-scores');
+            const confirmBtn = document.getElementById('confirm-reset');
+            const cancelBtn = document.getElementById('cancel-reset');
+            
+            function loadScores() {
+                const gameScores = JSON.parse(localStorage.getItem('gameScores') || '{}');
+                const ppcScores = gameScores['pierre-papier-ciseaux'];
+                const scoresContainer = document.getElementById('ppc-scores');
+                
+                if (ppcScores) {
+                    const date = new Date(ppcScores.date);
+                    scoresContainer.innerHTML = `
+                        <div class="score-card">
+                            <p class="score-date">Dernière partie : ${date.toLocaleDateString()} ${date.toLocaleTimeString()}</p>
+                            <div class="score-details">
+                                <p class="player-score">Joueur : ${ppcScores.player}</p>
+                                <p class="computer-score">Ordinateur : ${ppcScores.computer}</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    scoresContainer.innerHTML = '<p>Aucun score enregistré</p>';
+                }
+            }
+
+            function showModal() {
+                modal.classList.add('show');
+                // Animation d'entrée
+                modal.style.animation = 'fadeIn 0.3s ease';
+            }
+
+            function hideModal() {
+                // Animation de sortie
+                modal.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    modal.classList.remove('show');
+                }, 300);
+            }
+
+            function resetScores() {
+                localStorage.removeItem('gameScores');
+                loadScores();
+                hideModal();
+                
+                // Afficher une notification de succès
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.innerHTML = '<i class="fas fa-check-circle"></i> Scores réinitialisés avec succès';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 3000);
+            }
+
+            resetBtn.addEventListener('click', showModal);
+            confirmBtn.addEventListener('click', resetScores);
+            cancelBtn.addEventListener('click', hideModal);
+            
+            // Fermer le modal si on clique en dehors
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+
+            // Charger les scores initialement
+            loadScores();
+        });
+    </script>
+</body>
+</html>
