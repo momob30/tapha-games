@@ -4,8 +4,8 @@
     --secondary-color: #3498db;
     --accent-color: #e74c3c;
     --text-color: #333;
-    --bg-color: #f8f9fa;
-    --white: #ffffff;
+    --bg-color: #bcdbf9;
+    --white: white;
 }
 
 /* Reset et styles de base */
@@ -43,6 +43,14 @@ body {
 
 .nav-brand i {
     color: var(--secondary-color);
+}
+
+.brand-icon {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: transparent;
 }
 
 .nav-links {
